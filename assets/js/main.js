@@ -1,3 +1,4 @@
+/* Manlourd & Claire — site behaviour. No libraries needed. */
 (function () {
   "use strict";
   var SITE = window.SITE || {};
@@ -71,7 +72,8 @@
     return ph;
   }
 
-
+  // Every album block on the page shares one running photo number,
+  // so the viewer can step through the whole album in order.
   var albumList = [];
   document.querySelectorAll("[data-photos]").forEach(function (host) {
     var list = lookup(host.getAttribute("data-photos")) || [];
@@ -185,7 +187,10 @@
     lb.addEventListener("click", function (e) { if (e.target === lb || e.target.classList.contains("lb-inner")) lb.close(); });
   }
 
-
+  /* ---------- RSVP ---------- */
+  // Talks to the Google Apps Script web app set in content.js (rsvpEndpoint).
+  // The script answers with JSON, so the guest only sees "thank you" once the
+  // reply is really saved in the sheet.
   var form = document.querySelector("#rsvp-form");
   if (form) {
     var endpoint = SITE.rsvpEndpoint || "";
@@ -320,5 +325,20 @@
     reveals.forEach(function (r) { io.observe(r); });
   } else {
     reveals.forEach(function (r) { r.classList.add("in"); });
+  }
+
+  /* ---------- attire guide (home page) ---------- */
+  var attire = document.querySelector("dialog.attire");
+  var attireBtn = document.querySelector("[data-attire-open]");
+  if (attire && attireBtn) {
+    if (typeof attire.showModal !== "function") {
+      attireBtn.hidden = true; // very old browsers: keep the note, hide the button
+    } else {
+      attireBtn.addEventListener("click", function () { attire.showModal(); attire.querySelector(".attire-sheet").scrollTop = 0; });
+      attire.querySelector("[data-attire-close]").addEventListener("click", function () { attire.close(); });
+      // Click on the dark area outside the sheet closes it.
+      attire.addEventListener("click", function (e) { if (e.target === attire) attire.close(); });
+      attire.addEventListener("close", function () { attireBtn.focus(); });
+    }
   }
 })();

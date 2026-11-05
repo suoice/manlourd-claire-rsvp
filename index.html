@@ -112,22 +112,18 @@
           <span class="tape" style="width: 80px; left: 18px; top: -12px; transform: rotate(-10deg);"></span>
           <div class="deckle">
             <p class="label-sm">DRESS CODE</p>
-            <p class="t">Entourage · formal</p>
-            <div class="swatches" role="img" aria-label="Entourage palette: shades of brown from espresso to antique gold">
-              <span style="background: #4E3025;"></span>
-              <span style="background: #7A5236;"></span>
-              <span style="background: #A36A42;"></span>
-              <span style="background: #C08E5B;"></span>
-              <span style="background: #B79F8B;"></span>
-              <span style="background: #C49A5A;"></span>
+            <p class="t">Formal · our motif</p>
+            <div class="swatches motif" role="img" aria-label="Wedding motif: espresso, cinnamon, mocha, sand, butter yellow, peach and blush">
+              <span style="background: #603B28;"></span>
+              <span style="background: #9B5F3D;"></span>
+              <span style="background: #B38065;"></span>
+              <span style="background: #DABD9F;"></span>
+              <span style="background: #FFD89F;"></span>
+              <span style="background: #F4CDAC;"></span>
+              <span style="background: #EFAFA6;"></span>
             </div>
-            <p class="t" style="margin-top: 14px;">Guests · semi-formal</p>
-            <div class="swatches" role="img" aria-label="Guest palette: pastel yellow, pink, dusty rose and blush peach">
-              <span style="background: #FFF2B2; box-shadow: inset 0 0 0 1px #C9B98A;"></span>
-              <span style="background: #FFD6E0; box-shadow: inset 0 0 0 1px #D9AAB6;"></span>
-              <span style="background: #E8B4C4;"></span>
-              <span style="background: #FAD7C9; box-shadow: inset 0 0 0 1px #D9AE9C;"></span>
-            </div>
+            <p class="swatch-note">Long gowns &amp; dresses for the ladies, long sleeves &amp; slacks for the gentlemen.</p>
+            <button class="attire-open" type="button" data-attire-open aria-haspopup="dialog">Press to see the attire guide <span aria-hidden="true">→</span></button>
           </div>
         </div>
       </div>
@@ -174,26 +170,10 @@
 
   <!-- Journey teaser -->
   <section class="wrap collage-section" aria-labelledby="journey-title">
-    <div class="collage reveal">
-      <div class="block" aria-hidden="true"></div>
-      <figure class="a">
-        <img src="assets/img/journey5.jpg" alt="The lit doorway where their prenup photos were taken" loading="lazy" style="object-position: 50% 20%;">
-    
-      </figure>
-      <figure class="b snapshot">
-        <img src="assets/img/journey2.jpg" alt="The lit doorway where their prenup photos were taken" loading="lazy" style="object-position: 20% 20%;">
-      </figure>
-      <figure class="c">
-        <img src="assets/img/journey1.jpg" alt="The lit doorway where their prenup photos were taken" loading="lazy">
-      </figure>
-      <figure class="d">
-        <span class="tape" style="width: 70px; left: 30%; top: -12px;"></span>
-        <img src="assets/img/journey3.jpg" alt="The lit doorway where their prenup photos were taken" loading="lazy">
-      </figure>
-      <figure class="e">
-        <img src="assets/img/journey4.jpg" alt="The lit doorway where their prenup photos were taken" loading="lazy">
- 
-      </figure>
+    <div class="clothesline reveal" role="group" aria-label="Snapshots from our years together">
+      <img class="line l1" src="assets/img/hanging-1.webp" width="1013" height="489" loading="lazy" alt="Two polaroids pinned to a string: Manlourd's graduation with Claire beside him, and a night selfie of the two with Manlourd in his helmet">
+      <img class="line l2" src="assets/img/hanging-2.webp" width="1024" height="442" loading="lazy" alt="Three polaroids on a string: a selfie under the trees, Claire smiling with Manlourd behind her, and the two of them by the rocks">
+      <img class="line l3" src="assets/img/hanging-3.webp" width="1001" height="428" loading="lazy" alt="Three polaroids on a string: an evening selfie, the two standing on a rooftop, and Claire leaning on Manlourd's shoulder">
     </div>
     <div class="collage-text reveal">
       <p class="display" style="font-size: 15px; letter-spacing: .3em;">MANLOURD &amp; CLAIRE:</p>
@@ -281,6 +261,67 @@
   </section>
 
 </main>
+
+<dialog class="attire" aria-labelledby="attire-title">
+  <div class="attire-sheet">
+    <button class="attire-close" type="button" data-attire-close aria-label="Close the attire guide">Close ✕</button>
+    <header class="attire-head">
+      <p class="label-sm">Dress code · December 30, 2026</p>
+      <h2 class="script" id="attire-title">Attire Guide</h2>
+      <p class="attire-sub">Our wedding motif</p>
+      <ul class="attire-palette" aria-label="Motif colours">
+          <li><span style="background: #603B28;"></span>Espresso</li>
+          <li><span style="background: #9B5F3D;"></span>Cinnamon</li>
+          <li><span style="background: #B38065;"></span>Mocha</li>
+          <li><span style="background: #DABD9F;"></span>Sand</li>
+          <li><span style="background: #FFD89F;"></span>Butter</li>
+          <li><span style="background: #F4CDAC;"></span>Peach</li>
+          <li><span style="background: #EFAFA6;"></span>Blush</li>
+      </ul>
+    </header>
+
+    <section class="attire-guests" aria-labelledby="attire-guests-title">
+      <h3 id="attire-guests-title">For our guests</h3>
+      <div class="attire-guests-row">
+        <p><span class="label-sm">Ladies</span>Long dresses</p>
+        <p><span class="label-sm">Gentlemen</span>Long-sleeved shirts with slacks</p>
+      </div>
+      <p class="attire-hint">Kindly follow our colour palette when choosing your attire.</p>
+    </section>
+
+    <section aria-labelledby="attire-ent-title">
+      <h3 class="attire-kicker" id="attire-ent-title">For the entourage</h3>
+      <ul class="attire-cards">
+        <li class="attire-card" style="--i: 0;">
+          <div class="attire-fig"><img src="assets/img/attire/principal.webp" alt="A woman in a dark brown off-shoulder gown beside a man in a brown suit and tie" loading="lazy"></div>
+          <h4 class="script">Principal Sponsors</h4>
+          <p><b>Ladies</b> · long gown</p><p><b>Gentlemen</b> · formal suit</p>
+        </li>
+        <li class="attire-card" style="--i: 1;">
+          <div class="attire-fig"><img src="assets/img/attire/secondary.webp" alt="A woman in a taupe gown with puff sleeves beside a man in a cream barong and dark brown slacks" loading="lazy"></div>
+          <h4 class="script">Secondary Sponsors</h4>
+          <p><b>Ladies</b> · taupe long gown</p><p><b>Gentlemen</b> · barong with dark brown slacks</p>
+        </li>
+        <li class="attire-card" style="--i: 2;">
+          <div class="attire-fig"><img src="assets/img/attire/bridesmaids.webp" alt="Two bridesmaids holding white bouquets, one in a dark brown gown and one in champagne" loading="lazy"></div>
+          <h4 class="script">Bridesmaids</h4>
+          <p>Long gown in <b>dark brown</b> or <b>champagne</b></p>
+        </li>
+        <li class="attire-card" style="--i: 3;">
+          <div class="attire-fig"><img src="assets/img/attire/groomsmen.webp" alt="A man in a cream barong, black slacks and black shoes" loading="lazy"></div>
+          <h4 class="script">Groomsmen</h4>
+          <p>Barong, <b>black</b> slacks</p><p>and black shoes</p>
+        </li>
+        <li class="attire-card" style="--i: 4;">
+          <div class="attire-fig"><img src="assets/img/attire/bearers.webp" alt="Two girls holding flower baskets, one in a mauve gown and one in nude" loading="lazy"></div>
+          <h4 class="script">Bearers</h4>
+          <p>Long gown in <b>mauve</b> or <b>nude</b></p>
+        </li>
+      </ul>
+    </section>
+    <p class="attire-foot">Unsure about an outfit? Message Manlourd or Claire, we're happy to help.</p>
+  </div>
+</dialog>
 
 <footer class="site-footer">
   <div class="foot">
