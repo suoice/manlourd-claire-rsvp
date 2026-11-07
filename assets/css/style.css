@@ -1025,3 +1025,10 @@ html:has(dialog.attire[open]) { overflow: hidden; }
 .music-btn:focus-visible .music-disc { outline: 2px solid var(--gold-light); outline-offset: 3px; }
 @media (max-width: 760px) { .music-btn { right: 14px; bottom: 14px; } .music-disc { width: 46px; height: 46px; } }
 @media (prefers-reduced-motion: reduce) { .music-btn.is-playing .music-disc, .music-btn.is-waiting .music-disc { animation: none; } }
+
+.gallery-hero { overflow: visible; z-index: 2; }
+.gallery-hero + .gal-favs { padding-top: calc(clamp(80px, 9vw, 120px) + 70px); }
+@media (max-width: 760px) {
+  .spread { left: 12px; right: 12px; }
+  .spread-shot { width: 28vw; }
+}
