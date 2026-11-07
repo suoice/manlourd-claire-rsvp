@@ -13,9 +13,40 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400&family=Courier+Prime:wght@400;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <script>
+    /* Show the opening envelope on the first visit of this browser session (not for links to a section like #rsvp). */
+    (function () {
+      var d = document.documentElement, seen = null;
+      try { seen = sessionStorage.getItem("mc-opened"); } catch (e) {}
+      if (!seen && !location.hash) {
+        d.classList.add("has-opener");
+        setTimeout(function () { if (!window.__openerReady) d.classList.remove("has-opener"); }, 8000);
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+<!-- Opening envelope (first visit only; see assets/js/music.js) -->
+<div id="opener" class="opener" role="dialog" aria-modal="true" aria-label="Wedding invitation">
+  <button class="opener-skip" type="button">Skip</button>
+  <p class="opener-kicker">Manlourd &amp; Claire <span aria-hidden="true">·</span> 30 · 12 · 2026</p>
+  <div class="env">
+    <div class="env-back" aria-hidden="true"></div>
+    <div class="env-card" aria-hidden="true">
+      <picture>
+        <source media="(max-width: 760px)" srcset="assets/img/hero-portal-tall.jpg">
+        <img src="assets/img/hero-portal.jpg" alt="">
+      </picture>
+      <span class="env-mono">M <i>&amp;</i> C</span>
+    </div>
+    <div class="env-front"><p class="env-to">To: <span class="env-name">our dearest guest</span></p></div>
+    <div class="env-flap" aria-hidden="true"><span class="flap-out"></span><span class="flap-in"></span></div>
+    <button class="env-seal" type="button" aria-label="Open the invitation"><img src="assets/img/wax-seal.svg" alt=""></button>
+  </div>
+  <p class="opener-hint">Tap the seal to open</p>
+</div>
+
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="site-header over-hero">
@@ -337,5 +368,6 @@
 <script src="assets/js/content.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/motion.js"></script>
+<script src="assets/js/music.js"></script>
 </body>
 </html>

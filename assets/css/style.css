@@ -928,3 +928,100 @@ html:has(dialog.attire[open]) { overflow: hidden; }
 /* tighter gap between the FAQs and the hanging polaroids */
 .faq { padding-bottom: clamp(48px, 6vw, 72px); }
 .faq + .collage-section { padding-top: 0; }
+/* ---------- Opening envelope (home page, first visit) ---------- */
+.opener { display: none; }
+.has-opener { overflow: hidden; }
+.has-opener .opener { display: flex; }
+.opener { position: fixed; inset: 0; z-index: 1000; flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+  padding: 24px; color: #F1E7D6; overflow: hidden;
+  background: radial-gradient(ellipse at 50% 45%, #4A2E21 0%, #2A1A12 55%, #170E09 100%); transition: opacity .8s ease, visibility 0s .8s; }
+.opener::before { content: ""; position: absolute; inset: 0; background: url("../img/paper-grain.png"); opacity: .12; mix-blend-mode: overlay; pointer-events: none; }
+.opener.is-gone { opacity: 0; visibility: hidden; pointer-events: none; }
+.opener.is-skipping { transition-duration: .45s, 0s; transition-delay: 0s, .45s; }
+.opener-skip { position: absolute; top: 18px; right: 18px; z-index: 6; padding: 8px 14px; border: 1px solid rgba(226,197,149,.45); background: transparent; color: #EAD9BC; cursor: pointer;
+  font-family: var(--font-detail); font-size: 11px; letter-spacing: .22em; text-transform: uppercase; }
+.opener-skip:hover, .opener-skip:focus-visible { background: rgba(226,197,149,.15); }
+.opener-kicker { position: relative; font-family: var(--font-detail); font-size: 12px; letter-spacing: .32em; text-transform: uppercase; color: var(--gold-light); text-align: center; }
+.opener-hint { position: relative; font-family: var(--font-display); font-style: italic; font-size: 19px; color: #EAD9BC; animation: hint 2.6s ease-in-out infinite; }
+@keyframes hint { 0%, 100% { opacity: .45; } 50% { opacity: 1; } }
+
+.env { --w: min(540px, 86vw); position: relative; width: var(--w); height: calc(var(--w) * .66); margin-top: calc(var(--w) * .12);
+  filter: drop-shadow(0 30px 40px rgba(0,0,0,.5)); }
+.env > * { position: absolute; }
+.env-back { inset: 0; background: #C9AE8A; border-radius: 3px; box-shadow: inset 0 0 40px rgba(78,48,37,.35); }
+.env-card { z-index: 2; left: 5%; right: 5%; top: 5%; height: 88%; background: var(--paper-light); padding: 8px; overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,.25); }
+.env-card picture, .env-card img { display: block; width: 100%; height: 100%; }
+.env-card img { object-fit: cover; object-position: center 62%; }
+.env-mono { position: absolute; left: 0; right: 0; top: 18%; text-align: center; font-family: var(--font-script); font-size: calc(var(--w) * .1); color: #F7EEDF;
+  text-shadow: 0 2px 14px rgba(0,0,0,.6); transition: opacity .4s ease; }
+.env-mono i { font-family: var(--font-display); font-size: .6em; color: var(--gold-light); }
+.env-front { z-index: 3; inset: 0; background: var(--warm-beige) url("../img/paper-grain.png");
+  clip-path: polygon(0 0, 50% 54%, 100% 0, 100% 100%, 0 100%); display: flex; align-items: flex-end; padding: 0 0 6% 7%; }
+.env-front::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to top right, transparent 49.6%, rgba(78,48,37,.16) 50%, transparent 50.8%) left / 50% 100% no-repeat,
+              linear-gradient(to top left, transparent 49.6%, rgba(78,48,37,.16) 50%, transparent 50.8%) right / 50% 100% no-repeat; }
+.env-to { position: relative; font-family: var(--font-script); font-size: calc(var(--w) * .062); line-height: 1.1; color: var(--espresso); }
+.env-flap { z-index: 4; left: 0; right: 0; top: 0; height: 58%; transform-origin: 50% 0; transform-style: preserve-3d;
+  transform: perspective(1200px) rotateX(0deg); }
+.env-flap > span { position: absolute; inset: 0; clip-path: polygon(0 0, 100% 0, 50% 100%); backface-visibility: hidden; }
+.flap-out { background: #E9DAC0 url("../img/paper-grain.png"); box-shadow: inset 0 -30px 40px -30px rgba(78,48,37,.25); }
+.flap-in { clip-path: polygon(50% 0, 100% 100%, 0 100%) !important; background: url("../img/glow.jpg") 30% 40% / cover; transform: rotateX(180deg); filter: saturate(.9) brightness(.9); }
+.env-seal { z-index: 5; left: calc(50% - var(--w) * .11); top: calc(58% - var(--w) * .13); width: calc(var(--w) * .22); aspect-ratio: 1; padding: 0; border: 0; background: none; cursor: pointer;
+  border-radius: 50%; filter: drop-shadow(0 6px 8px rgba(0,0,0,.45)); animation: seal-breathe 2.6s ease-in-out infinite; }
+.env-seal img { width: 100%; height: 100%; }
+.env-seal:hover { animation-play-state: paused; scale: 1.06; }
+.env-seal:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 6px; }
+@keyframes seal-breathe { 0%, 100% { scale: 1; filter: drop-shadow(0 6px 8px rgba(0,0,0,.45)); } 50% { scale: 1.04; filter: drop-shadow(0 6px 8px rgba(0,0,0,.45)) drop-shadow(0 0 18px rgba(226,197,149,.35)); } }
+
+/* 1 — seal lifts away, flap opens */
+.is-opening .env-seal { animation: seal-off .55s cubic-bezier(.4,0,.2,1) forwards; pointer-events: none; }
+@keyframes seal-off { to { opacity: 0; translate: 0 -30px; rotate: -18deg; scale: 1.2; } }
+.is-opening .env-flap { animation: flap-open .8s cubic-bezier(.45,.05,.3,1) .25s forwards; }
+@keyframes flap-open { 0% { transform: perspective(1200px) rotateX(0deg); z-index: 4; } 50% { z-index: 4; } 51% { z-index: 1; } 100% { transform: perspective(1200px) rotateX(180deg); z-index: 1; } }
+.is-opening .opener-hint, .is-opening .opener-skip, .is-opening .opener-kicker { opacity: 0; transition: opacity .4s ease; }
+/* 2 — card slides up out of the envelope */
+.env-card { transition: translate .95s cubic-bezier(.3,.7,.2,1); }
+.is-rising .env > .env-card { translate: 0 -64%; }
+/* 3 — card grows into the hero while the envelope drops away */
+.env-card.is-free { position: fixed; z-index: 10; margin: 0; translate: none;
+  transition: top .9s cubic-bezier(.65,0,.25,1), left .9s cubic-bezier(.65,0,.25,1), width .9s cubic-bezier(.65,0,.25,1), height .9s cubic-bezier(.65,0,.25,1), padding .9s ease; }
+.is-expanding .env-card.is-free { padding: 0; box-shadow: none; }
+.is-expanding .env-mono { opacity: 0; }
+.is-expanding .env, .is-expanding .opener-kicker { translate: 0 40vh; opacity: 0; transition: translate .9s cubic-bezier(.5,0,.75,0), opacity .7s ease; }
+
+/* the real hero waits underneath, then its words settle in as the envelope fades */
+.has-opener .hero > picture img, .opener-done .hero > picture img { animation: none; }
+.has-opener .hero-copy > *, .has-opener .hero .scroll-cue, .has-opener .hero-mat, .has-opener .site-header { animation-play-state: paused; }
+.has-opener .site-header { opacity: 0; }
+.opener-done .site-header { animation: settle 1s .3s ease both; }
+.has-opener .music-btn { opacity: 0; pointer-events: none; }
+
+@media (max-width: 760px) {
+  .opener { gap: 22px; }
+  .opener-kicker { font-size: 11px; letter-spacing: .24em; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .opener-hint, .env-seal { animation: none; }
+}
+
+/* ---------- Music button (all pages) ---------- */
+.music-btn { position: fixed; z-index: 60; right: 18px; bottom: 18px; display: flex; align-items: center; gap: 10px; padding: 0; border: 0; background: none; cursor: pointer;
+  transition: opacity .6s ease; }
+.music-disc { position: relative; width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
+  background: repeating-radial-gradient(circle at 50% 50%, #1d130e 0 2px, #2b1d16 2px 3px); box-shadow: 0 6px 16px rgba(0,0,0,.35), inset 0 0 0 1px rgba(226,197,149,.25); }
+.music-disc img { width: 46%; height: 46%; border-radius: 50%; }
+.music-disc::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(135deg, rgba(255,255,255,.14), transparent 45%); }
+.music-btn.is-playing .music-disc { animation: spin 6s linear infinite; }
+@keyframes spin { to { rotate: 360deg; } }
+/* paused: a small play mark sits on the record */
+.music-btn:not(.is-playing) .music-disc::before { content: ""; position: absolute; z-index: 2; width: 0; height: 0; margin-left: 3px;
+  border-left: 11px solid #F7EEDF; border-top: 7px solid transparent; border-bottom: 7px solid transparent; filter: drop-shadow(0 1px 2px rgba(0,0,0,.6)); }
+.music-btn.is-waiting .music-disc { box-shadow: 0 6px 16px rgba(0,0,0,.35), 0 0 0 0 rgba(226,197,149,.6); animation: nudge 2s ease-out infinite; }
+@keyframes nudge { 70% { box-shadow: 0 6px 16px rgba(0,0,0,.35), 0 0 0 12px rgba(226,197,149,0); } 100% { box-shadow: 0 6px 16px rgba(0,0,0,.35), 0 0 0 0 rgba(226,197,149,0); } }
+.music-label { order: -1; padding: 6px 10px; background: rgba(36,24,18,.85); color: #F1E7D6; font-family: var(--font-detail); font-size: 11px; letter-spacing: .12em;
+  white-space: nowrap; opacity: 0; translate: 6px 0; transition: opacity .3s ease, translate .3s ease; pointer-events: none; }
+@media (hover: hover) { .music-btn:hover .music-label, .music-btn:focus-visible .music-label { opacity: 1; translate: 0 0; } }
+.music-btn:focus-visible .music-disc { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+@media (max-width: 760px) { .music-btn { right: 14px; bottom: 14px; } .music-disc { width: 46px; height: 46px; } }
+@media (prefers-reduced-motion: reduce) { .music-btn.is-playing .music-disc, .music-btn.is-waiting .music-disc { animation: none; } }

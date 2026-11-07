@@ -100,3 +100,15 @@ All links are relative, so the site also works from any other static host.
   replace it with a public-domain painting (e.g. from a museum's
   open-access collection) of similar size.
 - Animations respect the visitor's "reduce motion" setting.
+
+## Opening envelope & music
+
+- The home page opens with a sealed envelope on the first visit of each browser
+  session. Tapping the seal opens it and starts the song. Links to a section
+  (like `index.html#rsvp`) skip the envelope.
+- Personal envelopes: add `?to=Name` to the link, e.g. `index.html?to=Tita+Marie`.
+- The song is `assets/audio/intertwine.mp3`. To change it, replace that file
+  (keep it under ~5 MB) or edit `SONG` at the top of `assets/js/music.js`.
+- A record button (bottom right, every page) plays and pauses the music. It
+  continues where it left off when guests change pages; if the browser blocks
+  sound on the new page, it resumes on the guest's next tap.
